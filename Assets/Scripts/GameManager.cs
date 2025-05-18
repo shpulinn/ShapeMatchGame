@@ -12,6 +12,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private AudioManager audioManager;
 
     [Space] [SerializeField] private GameObject winScreen;
+    [SerializeField] private ParticleSystem winParticles;
     [SerializeField] private GameObject defeatScreen;
 
     private void Awake()
@@ -35,14 +36,12 @@ public class GameManager : MonoBehaviour
     {
         State = GameState.Win;
         ShowEndgameScreen(true);
-        Time.timeScale = 0;
     }
 
     public void LoseGame()
     {
         State = GameState.Lose;
         ShowEndgameScreen(false);
-        Time.timeScale = 0;
     }
 
     private void ShowEndgameScreen(bool isWin)
@@ -50,6 +49,7 @@ public class GameManager : MonoBehaviour
         if (isWin)
         {
             winScreen.SetActive(true);
+            winParticles.Play();
         }
         else
         {
@@ -60,7 +60,6 @@ public class GameManager : MonoBehaviour
     public void RestartGame()
     {
         boardManager.ResetBoard();
-        Time.timeScale = 1;
         UnityEngine.SceneManagement.SceneManager.LoadScene(UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex);
     }
 
