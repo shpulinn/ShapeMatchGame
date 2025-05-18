@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections;
 using UnityEngine;
+using DG.Tweening;
 
 [RequireComponent(typeof(Rigidbody2D))]
 public class PieceController : MonoBehaviour
@@ -30,8 +32,20 @@ public class PieceController : MonoBehaviour
         if (_gameManager.State == GameState.Playing && _gameManager.GetActionBarManager().TryAddPiece(_data))
         {
             GameManager.Instance.GetAudioManager().PlayRandomSound(SoundType.Pick);
-            OnDestroyed?.Invoke(this);
-            Destroy(gameObject);
+            StartCoroutine(ScaleAndDeleteCoroutine());
         }
+    }
+
+    private IEnumerator ScaleAndDeleteCoroutine()
+    {
+        Tween myTween = transform.DOScale(Vector3.zero, .2f);
+        yield return myTween.WaitForCompletion();
+        DestroyPiece();
+    }
+
+    private void DestroyPiece()
+    {
+        OnDestroyed?.Invoke(this);
+        Destroy(gameObject);
     }
 }
