@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: af9b6680ebc591e4a998dbbdf7cc071d, type: 3}
+  m_Name: HexagonShape
+  m_EditorClassIdentifier: 
+  Id: 3
+  shapeSprite: {fileID: 21300000, guid: 05642e76e75f1e54fabf54bbddc8cb63, type: 3}
+  borderSprite: {fileID: 21300000, guid: 9a1f86f4141ce4b4393be4ba49b33c0f, type: 3}
+  colliderPrefab: {fileID: 31783078978825343, guid: 416876f144c3e6f47b285d7696705514, type: 3}

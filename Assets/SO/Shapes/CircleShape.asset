@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: af9b6680ebc591e4a998dbbdf7cc071d, type: 3}
+  m_Name: CircleShape
+  m_EditorClassIdentifier: 
+  Id: 2
+  shapeSprite: {fileID: 21300000, guid: 59c21b0bfd515e345847178a6626d791, type: 3}
+  borderSprite: {fileID: 21300000, guid: d7ae6aa36463d9e4aa0e54f23b964671, type: 3}
+  colliderPrefab: {fileID: 8096725160152484206, guid: 33fbcd15cbb0c5842ab81ad4456dae56, type: 3}
