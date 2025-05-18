@@ -8,8 +8,6 @@ public class ActionBarManager : MonoBehaviour
 {
     [SerializeField] private Transform slotParent;
     [SerializeField] private int maxCapacity = 7;
-    
-    [SerializeField] private PieceVisualDatabase visualDB;
 
     private List<PieceData> dataList = new();
     private List<PieceView> slots = new();
@@ -27,27 +25,36 @@ public class ActionBarManager : MonoBehaviour
     {
         if (dataList.Count + 1 >= maxCapacity)
         {
-            OnDefeat?.Invoke();
-            GameManager.Instance.GetAudioManager().PlayRandomSound(SoundType.Failure);
-            return false;
+            dataList.Add(data);
+            UpdateVisuals();
+            if (CheckTriplet() == false)
+            {
+                OnDefeat?.Invoke();
+                GameManager.Instance.GetAudioManager().PlayRandomSound(SoundType.Failure);
+                return false;
+            }
         }
+        else
+        {
+            dataList.Add(data);
         
-        dataList.Add(data);
-        
-        UpdateVisuals();
+            UpdateVisuals();
 
-        CheckTriplet();
+            CheckTriplet();
 
-        return true;
+            return true;
+        }
+
+        return false;
     }
 
-    private void CheckTriplet()
+    private bool CheckTriplet()
     {
         var groups = dataList
             .GroupBy(p => (p.Animal, p.Shape, p.Color))
             .FirstOrDefault(g => g.Count() >= 3);
 
-        if (groups == null) return;
+        if (groups == null) return false;
         
         var match = groups.Take(3).ToList();
         foreach (var m in match)
@@ -56,6 +63,7 @@ public class ActionBarManager : MonoBehaviour
         OnTripletMatched?.Invoke(match[0]);
         GameManager.Instance.GetAudioManager().PlayRandomSound(SoundType.Success);
         UpdateVisuals();
+        return true;
     }
 
     private void UpdateVisuals()
@@ -63,7 +71,7 @@ public class ActionBarManager : MonoBehaviour
         for (int i = 0; i < slots.Count; i++)
         {
             if (i < dataList.Count)
-                slots[i].SetData(dataList[i], visualDB);
+                slots[i].SetData(dataList[i]);
             else
                 slots[i].Clear();
         }
