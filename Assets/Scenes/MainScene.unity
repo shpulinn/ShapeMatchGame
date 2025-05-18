@@ -301,6 +301,11 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 6391344571024049669, guid: ed61f0564ed3b7044bee62a0aa3e0b5c, type: 3}
   m_PrefabInstance: {fileID: 124442988}
   m_PrefabAsset: {fileID: 0}
+--- !u!198 &163241776 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 846028474957530812, guid: 2a55862d56d2cbb4788b22a5932c45a3, type: 3}
+  m_PrefabInstance: {fileID: 2676245169861170503}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &220820531
 GameObject:
   m_ObjectHideFlags: 0
@@ -484,6 +489,7 @@ MonoBehaviour:
   actionBarManager: {fileID: 384316348}
   audioManager: {fileID: 630938431}
   winScreen: {fileID: 26554023}
+  winParticles: {fileID: 163241776}
   defeatScreen: {fileID: 1053928164}
 --- !u!4 &369788164
 Transform:
@@ -3530,7 +3536,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1473494937}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 378505922}
+        m_TargetAssemblyTypeName: BoardManager, Assembly-CSharp
+        m_MethodName: ReshuffleBoard
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1473494937
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4233,6 +4251,34 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 26554024}
     m_Modifications:
+    - target: {fileID: 846028474957530812, guid: 2a55862d56d2cbb4788b22a5932c45a3, type: 3}
+      propertyPath: looping
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 846028474957530812, guid: 2a55862d56d2cbb4788b22a5932c45a3, type: 3}
+      propertyPath: prewarm
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 846028474957530812, guid: 2a55862d56d2cbb4788b22a5932c45a3, type: 3}
+      propertyPath: stopAction
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 846028474957530812, guid: 2a55862d56d2cbb4788b22a5932c45a3, type: 3}
+      propertyPath: playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 846028474957530812, guid: 2a55862d56d2cbb4788b22a5932c45a3, type: 3}
+      propertyPath: TriggerModule.enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 846028474957530812, guid: 2a55862d56d2cbb4788b22a5932c45a3, type: 3}
+      propertyPath: TriggerModule.primitives.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 846028474957530812, guid: 2a55862d56d2cbb4788b22a5932c45a3, type: 3}
+      propertyPath: TriggerModule.primitives.Array.data[0]
+      value: 
+      objectReference: {fileID: 26554024}
     - target: {fileID: 2921701782696887345, guid: 2a55862d56d2cbb4788b22a5932c45a3, type: 3}
       propertyPath: m_LocalPosition.x
       value: -540
