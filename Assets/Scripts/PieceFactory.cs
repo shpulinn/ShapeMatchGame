@@ -1,23 +1,37 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class PieceFactory : MonoBehaviour
 {
     [SerializeField] private int totalPieces = 36;
     [SerializeField] private int uniqueCombinations = 12;
 
-    private int minPiecesCount = 3;
+    private const int MinPiecesPerGroup = 3;
 
-    public List<PieceData> GenerateSet()
+    public List<PieceData> GenerateSet() => GenerateSet(totalPieces);
+
+    public List<PieceData> GenerateSet(int requestedCount)
     {
         List<PieceData> result = new();
         List<PieceData> allCombos = GenerateAllPossibleCombinations();
-        
+
         Shuffle(allCombos);
-        for (int i = 0; i < uniqueCombinations && i < allCombos.Count; i++)
+
+        int combosNeeded = Mathf.Min(uniqueCombinations, allCombos.Count);
+        int maxGroups = requestedCount / MinPiecesPerGroup;
+        int groupCount = Mathf.Min(combosNeeded, maxGroups);
+
+        for (int i = 0; i < groupCount; i++)
         {
-            for (int j = 0; j < minPiecesCount; j++)
+            for (int j = 0; j < MinPiecesPerGroup; j++)
                 result.Add(allCombos[i]);
+        }
+        
+        while (result.Count < requestedCount)
+        {
+            var random = allCombos[Random.Range(0, groupCount)];
+            result.Add(random);
         }
 
         Shuffle(result);
