@@ -35,6 +35,11 @@ public class AudioManager : MonoBehaviour
         }
         _audioSource.PlayOneShot(clip);
     }
+
+    public void Mute(bool value)
+    {
+        _audioSource.mute = value;
+    }
 }
 
 public enum SoundType
