@@ -6,6 +6,10 @@ public class PieceFactory : MonoBehaviour
 {
     [SerializeField] private int totalPieces = 36;
     [SerializeField] private int uniqueCombinations = 12;
+    
+    [SerializeField] private List<AnimalSO> animalPool;
+    [SerializeField] private List<ShapeSO> shapePool;
+    [SerializeField] private List<ColorSO> colorPool;
 
     private const int MinPiecesPerGroup = 3;
 
@@ -41,10 +45,17 @@ public class PieceFactory : MonoBehaviour
     private List<PieceData> GenerateAllPossibleCombinations()
     {
         List<PieceData> result = new();
-        foreach (Animal animal in System.Enum.GetValues(typeof(Animal)))
-        foreach (ShapeType shape in System.Enum.GetValues(typeof(ShapeType)))
-        foreach (BorderColor color in System.Enum.GetValues(typeof(BorderColor)))
-            result.Add(new PieceData { Animal = animal, Shape = shape, Color = color });
+        foreach (var animal in animalPool)
+            foreach (var shape in shapePool)
+                foreach (var color in colorPool)
+                    {
+                        result.Add(new PieceData
+                        {
+                            Animal = animal,
+                            Shape = shape,
+                            Color = color
+                        });
+                    }
         return result;
     }
 

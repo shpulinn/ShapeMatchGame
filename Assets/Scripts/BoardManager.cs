@@ -11,7 +11,6 @@ public class BoardManager : MonoBehaviour
     [SerializeField] private Transform spawnTop;
     [SerializeField] private Transform boardArea;
 
-    [SerializeField] private PieceVisualDatabase visualDB;
     [SerializeField] private PieceFactory factory;
 
     private List<PieceController> _activePieces = new();
@@ -35,7 +34,7 @@ public class BoardManager : MonoBehaviour
 
             GameObject obj = Instantiate(piecePrefab, spawnPos, Quaternion.identity, boardArea);
             var controller = obj.GetComponent<PieceController>();
-            controller.Initialize(pieces[i], visualDB);
+            controller.Initialize(pieces[i]);
             
             controller.OnDestroyed += HandlePieceDestroyed;
             _activePieces.Add(controller);
@@ -106,7 +105,7 @@ public class BoardManager : MonoBehaviour
 
             GameObject obj = Instantiate(piecePrefab, spawnPos, Quaternion.identity, boardArea);
             var controller = obj.GetComponent<PieceController>();
-            controller.Initialize(newPieces[i], visualDB);
+            controller.Initialize(newPieces[i]);
 
             controller.OnDestroyed += HandlePieceDestroyed;
             _activePieces.Add(controller);

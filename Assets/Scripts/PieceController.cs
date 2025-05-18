@@ -18,13 +18,13 @@ public class PieceController : MonoBehaviour
         _gameManager = GameManager.Instance;
     }
 
-    public void Initialize(PieceData data, PieceVisualDatabase visualDB)
+    public void Initialize(PieceData data)
     {
         _data = data;
         
-        _pieceView.Apply(data, visualDB);
+        _pieceView.Apply(data);
 
-        var collider = Instantiate(visualDB.GetColliderGO(data.Shape), transform);
+        var collider = Instantiate(data.Shape.colliderPrefab, transform);
     }
 
     private void OnMouseDown()

@@ -8,25 +8,24 @@ public class PieceView : MonoBehaviour
     [SerializeField] private Image AnimalImage;
     [SerializeField] private Image Frame;
 
-    public void Apply(PieceData data, PieceVisualDatabase visualDB)
+    public void Apply(PieceData data)
     {
-        SetVisualData(data, visualDB);
+        SetVisualData(data);
     }
 
-    public void SetData(PieceData data, PieceVisualDatabase visualDB)
+    public void SetData(PieceData data)
     {
-        SetVisualData(data, visualDB);
+        SetVisualData(data);
 
         gameObject.SetActive(true);
     }
     
-    private void SetVisualData(PieceData data, PieceVisualDatabase visualDB)
+    private void SetVisualData(PieceData data)
     {
-        ShapeImage.sprite = visualDB.GetShape(data.Shape);
-        AnimalImage.sprite = visualDB.GetAnimal(data.Animal);
-        Frame.sprite = visualDB.GetBorderShape(data.Shape);
-        Frame.color = visualDB.GetColor(data.Color);
-
+        ShapeImage.sprite = data.Shape.shapeSprite;
+        AnimalImage.sprite = data.Animal.sprite;
+        Frame.sprite = data.Shape.borderSprite;
+        Frame.color = data.Color.unityColor;
         transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
         transform.DOScale(Vector3.one, .2f);
     }
